@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#### made script for filtering out contigs of less than 1000bp, stored in ~/scripts
+
+### Cr15
+
+python ~/scripts/filter_contig_length.py Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/contigs_Cr15_megahit.fasta Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/contigs_Cr15_megahit_filt5000.fasta && python ~/scripts/filter_contig_length.py Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3/contigs_Cr15_metaspades.fasta Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3/contigs_Cr15_metaspades_filt5000.fasta
+
+#### Cr50_1
+
+python ~/scripts/filter_contig_length.py Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3/contigs_Cr50_1_metaspades.fasta Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3/contigs_Cr50_1_metaspades_5000filt.fasta && python ~/scripts/filter_contig_length.py Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3/final.contigs.fa Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3/contigs_Cr50_1_megahit_5000filt.fasta
+
+
+#### Cr50_2
+
+python ~/scripts/filter_contig_length.py Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3/contigs_Cr50_2_metaspades.fasta Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3/contigs_Cr50_2_metaspades_5000filt.fasta && python ~/scripts/filter_contig_length.py Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3/final.contigs.fa Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3/contigs_Cr50_2_megahit_5000filt.fasta
+
+
+#### Cr90
+
+python ~/scripts/filter_contig_length.py Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3/contigs_Cr90_metaspades.fasta Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3/contigs_Cr90_metaspades_5000filt.fasta && python ~/scripts/filter_contig_length.py Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3/final.contigs.fa Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3/contigs_Cr90_megahit_5000filt.fasta
+
+

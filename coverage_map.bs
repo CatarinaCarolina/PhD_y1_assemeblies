@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+#### coverage mapping
+
+### Meta SPAdes 200_3 files
+
+#### Cr15
+
+/home/georg/orange/software/bbmap/stats.sh Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3/contigs.fasta > Cr15_analysis/2_assembly/Cr15_coverage_mapping/contigs_stats.txt
+
+bowtie2-build Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3/contigs.fasta Cr15_analysis/2_assembly/Cr15_coverage_mapping/contigs.VCsponge_A.index
+
+bowtie2 --threads 12 -x Cr15_analysis/2_assembly/Cr15_coverage_mapping/contigs.Cr15.index  -1 <( zcat Cr15_analysis/1_quality/Crc15-BF_1_Q20_m50_Phix.fq.gz) -2 <( zcat Cr15_analysis/1_quality/Crc15-BF_2_Q20_m50_Phix.fq.gz) -S Cr15_analysis/2_assembly/Cr15_coverage_mapping/Cr15.sam
+
+#### Cr50_1
+
+/home/georg/orange/software/bbmap/stats.sh Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3/contigs.fasta > Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/contigs_stats.txt
+
+bowtie2-build Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3/contigs.fasta Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/contigs.VCsponge_A.index
+
+bowtie2 --threads 12 -x Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/contigs.Cr50_1.index  -1 <( zcat Cr50_1_analysis/1_quality/Cr50_1_1_Q20_phix.fq.gz) -2 <( zcat Cr50_1_analysis/1_quality/Cr50_1_2_Q20_phix.fq.gz) -S Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/Cr50_1.sam
+
+#### Cr50_2
+/home/georg/orange/software/bbmap/stats.sh Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3/contigs.fasta > Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/contigs_stats.txt
+
+bowtie2-build Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3/contigs.fasta Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/contigs.VCsponge_A.index
+
+bowtie2 --threads 12 -x Cr50_2_coverage_mapping_analysis/2_assembly/Cr50_2_coverage_mapping/contigs.Cr50_2.index  -1 <( zcat Cr50_2_analysis/1_quality/Cr50_2_1_Q20_phix.fq.gz) -2 <( zcat Cr50_2_analysis/1_quality/Cr50_2_2_Q20_phix.fq.gz) -S Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/Cr50_2.sam
+
+#### Cr90
+/home/georg/orange/software/bbmap/stats.sh Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3/contigs.fasta > Cr90_analysis/2_assembly/Cr90_coverage_mapping/contigs_stats.txt
+
+bowtie2-build Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3/contigs.fasta Cr90_analysis/2_assembly/Cr90_coverage_mapping/contigs.VCsponge_A.index
+
+bowtie2 --threads 12 -x Cr90_coverage_mapping_analysis/2_assembly/Cr90_coverage_mapping/contigs.Cr90.index  -1 <( zcat Cr90_analysis/1_quality/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix.fastq.gz) -2 <( zcat Cr90_analysis/1_quality/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix.fastq.gz) -S Cr90_analysis/2_assembly/Cr90_coverage_mapping/Cr90_1.sam
+
+##### joint stuff
+
+## make indexes ###
+bowtie2-build Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3/contigs.fasta Cr15_analysis/2_assembly/Cr15_coverage_mapping/contigs.Cr15.index && bowtie2-build Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3/contigs.fasta Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/contigs.Cr50_1.index && bowtie2-build Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3/contigs.fasta Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/contigs.Cr50_2.index && bowtie2-build Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3/contigs.fasta Cr90_analysis/2_assembly/Cr90_coverage_mapping/contigs.Cr90.index
+
+#### map coverage ###
+
+bowtie2 --threads 10 -x Cr15_analysis/2_assembly/Cr15_coverage_mapping/contigs.Cr15.index  -1 <( zcat Cr15_analysis/1_quality/Crc15-BF_1_Q20_m50_Phix.fq.gz) -2 <( zcat Cr15_analysis/1_quality/Crc15-BF_2_Q20_m50_Phix.fq.gz) -S Cr15_analysis/2_assembly/Cr15_coverage_mapping/Cr15.sam && bowtie2 --threads 10 -x Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/contigs.Cr50_1.index  -1 <( zcat Cr50_1_analysis/1_quality/Cr50_1_1_Q20_phix.fq.gz) -2 <( zcat Cr50_1_analysis/1_quality/Cr50_1_2_Q20_phix.fq.gz) -S Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/Cr50_1.sam &&
+
+bowtie2 --threads 10 -x Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/contigs.Cr50_2.index  -1 <( zcat Cr50_2_analysis/1_quality/Cr50_2_1_Q20_phix.fq.gz) -2 <( zcat Cr50_2_analysis/1_quality/Cr50_2_2_Q20_phix.fq.gz) -S Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/Cr50_2.sam && bowtie2 --threads 10 -x Cr90_analysis/2_assembly/Cr90_coverage_mapping/contigs.Cr90.index  -1 <( zcat Cr90_analysis/1_quality/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix.fastq.gz) -2 <( zcat Cr90_analysis/1_quality/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix.fastq.gz) -S Cr90_analysis/2_assembly/Cr90_coverage_mapping/Cr90_1.sam
+
+#### RESULT ###
+sales001@micro4:~/assembly_per_georg$ bowtie2 --threads 10 -x Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/contigs.Cr50_2.index  -1 <( zcat Cr50_2_analysis/1_quality/Cr50_2_1_Q20_phix.fq.gz) -2 <( zcat Cr50_2_analysis/1_quality/Cr50_2_2_Q20_phix.fq.gz) -S Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/Cr50_2.sam && bowtie2 --threads 10 -x Cr90_analysis/2_assembly/Cr90_coverage_mapping/contigs.Cr90.index  -1 <( zcat Cr90_analysis/1_quality/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix.fastq.gz) -2 <( zcat Cr90_analysis/1_quality/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix.fastq.gz) -S Cr90_analysis/2_assembly/Cr90_coverage_mapping/Cr90_1.sam
+28287570 reads; of these:
+  28287570 (100.00%) were paired; of these:
+    10590319 (37.44%) aligned concordantly 0 times
+    15482315 (54.73%) aligned concordantly exactly 1 time
+    2214936 (7.83%) aligned concordantly >1 times
+    ----
+    10590319 pairs aligned concordantly 0 times; of these:
+      491002 (4.64%) aligned discordantly 1 time
+    ----
+    10099317 pairs aligned 0 times concordantly or discordantly; of these:
+      20198634 mates make up the pairs; of these:
+        15796088 (78.20%) aligned 0 times
+        3271698 (16.20%) aligned exactly 1 time
+        1130848 (5.60%) aligned >1 times
+72.08% overall alignment rate
+19000987 reads; of these:
+  19000987 (100.00%) were paired; of these:
+    12258573 (64.52%) aligned concordantly 0 times
+    6459728 (34.00%) aligned concordantly exactly 1 time
+    282686 (1.49%) aligned concordantly >1 times
+    ----
+    12258573 pairs aligned concordantly 0 times; of these:
+      3228811 (26.34%) aligned discordantly 1 time
+    ----
+    9029762 pairs aligned 0 times concordantly or discordantly; of these:
+      18059524 mates make up the pairs; of these:
+        11010964 (60.97%) aligned 0 times
+        4103375 (22.72%) aligned exactly 1 time
+        2945185 (16.31%) aligned >1 times
+71.03% overall alignment rate
+
+
+### sam to bam ###
+
+samtools view -F 4 -bS VCsponge_A.sam > VCsponge_A.bam
+
+samtools view -F 4 -bS Cr15_analysis/2_assembly/Cr15_coverage_mapping/Cr15.sam > Cr15_analysis/2_assembly/Cr15_coverage_mapping/Cr15_metasp_200_3.bam && samtools view -F 4 -bS Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/Cr50_1.sam > Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/Cr50_1_metasp_200_3.bam && samtools view -F 4 -bS Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/Cr50_2.sam > Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/Cr50_2_metasp_200_3.bam && samtools view -F 4 -bS Cr90_analysis/2_assembly/Cr90_coverage_mapping/Cr90_1.sam > Cr90_analysis/2_assembly/Cr90_coverage_mapping/Cr90_metasp_200_3.bam
+
+##joint
+
+samtools view -F 4 -bS Cr15_analysis/2_assembly/Cr15_coverage_mapping/Cr15.sam > Cr15_analysis/2_assembly/Cr15_coverage_mapping/Cr15_metasp_200_3.bam && samtools view -F 4 -bS Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/Cr50_1.sam > Cr50_1_analysis/2_assembly/Cr50_1_coverage_mapping/Cr50_1_metasp_200_3.bam && samtools view -F 4 -bS Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/Cr50_2.sam > Cr50_2_analysis/2_assembly/Cr50_2_coverage_mapping/Cr50_2_metasp_200_3.bam && samtools view -F 4 -bS Cr90_analysis/2_assembly/Cr90_coverage_mapping/Cr90_1.sam > Cr90_analysis/2_assembly/Cr90_coverage_mapping/Cr90_metasp_200_3.bam
+
+
+#### MEGAHIT ASSEMBLIES #####
+
+####  Stats ####
+
+/home/georg/orange/software/bbmap/stats.sh Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/final.contigs.fa > Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/stats.txt
+
+/home/georg/orange/software/bbmap/stats.sh Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3/final.contigs.fa > Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3/stats.txt
+
+/home/georg/orange/software/bbmap/stats.sh Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3/final.contigs.fa > Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3/stats.txt
+
+/home/georg/orange/software/bbmap/stats.sh Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3/final.contigs.fa > Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3/stats.txt
+
+### joint
+
+/home/georg/orange/software/bbmap/stats.sh Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/final.contigs.fa > Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/Cr15_mega_stats.txt && /home/georg/orange/software/bbmap/stats.sh Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3/final.contigs.fa > Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3/Cr50_1_mega_stats.txt && /home/georg/orange/software/bbmap/stats.sh Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3/final.contigs.fa > Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3/Cr50_2_mega_stats.txt && /home/georg/orange/software/bbmap/stats.sh Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3/final.contigs.fa > Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3/Cr90_mega_stats.txt
+
+
+#### coverage mapping indexing ####
+
+bowtie2-build Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/final.contigs.fa Cr15_analysis/2_assembly/Cr15_megahit_coverage/200_3/contigs.Cr15_megahit.index
+
+bowtie2-build Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3/final.contigs.fa Cr50_1_analysis/2_assembly/Cr50_1_megahit_coverage/200_3/contigs.Cr50_1_megahit.index
+
+bowtie2-build Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3/final.contigs.fa Cr50_2_analysis/2_assembly/Cr50_2_megahit_coverage/200_3/contigs.Cr50_2_megahit.index
+
+bowtie2-build Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3/final.contigs.fa Cr90_analysis/2_assembly/Cr90_megahit_coverage/200_3/contigs.Cr90_megahit.index
+
+#### joint
+
+bowtie2-build Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/final.contigs.fa Cr15_analysis/2_assembly/Cr15_megahit_coverage/200_3/contigs.Cr15_megahit.index &&
+bowtie2-build Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3/final.contigs.fa Cr50_1_analysis/2_assembly/Cr50_1_megahit_coverage/200_3/contigs.Cr50_1_megahit.index &&
+bowtie2-build Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3/final.contigs.fa Cr50_2_analysis/2_assembly/Cr50_2_megahit_coverage/200_3/contigs.Cr50_2_megahit.index &&
+bowtie2-build Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3/final.contigs.fa Cr90_analysis/2_assembly/Cr90_megahit_coverage/200_3/contigs.Cr90_megahit.index
+
+#### map coverage ###
+
+bowtie2 --threads 15 -x Cr15_analysis/2_assembly/Cr15_megahit_coverage/200_3/contigs.Cr15_megahit.index  -1 <( zcat Cr15_analysis/1_quality/Crc15-BF_1_Q20_m50_Phix.fq.gz) -2 <( zcat Cr15_analysis/1_quality/Crc15-BF_2_Q20_m50_Phix.fq.gz) -S Cr15_analysis/2_assembly/Cr15_megahit_coverage/200_3/Cr15_mega_200_3.sam &&
+
+bowtie2 --threads 15 -x Cr50_1_analysis/2_assembly/Cr50_1_megahit_coverage/200_3/contigs.Cr50_1_megahit.index  -1 <( zcat Cr50_1_analysis/1_quality/Cr50_1_1_Q20_phix.fq.gz) -2 <( zcat Cr50_1_analysis/1_quality/Cr50_1_2_Q20_phix.fq.gz) -S Cr50_1_analysis/2_assembly/Cr50_1_megahit_coverage/200_3/Cr50_1_mega_200_3.sam &&
+
+bowtie2 --threads 15 -x Cr50_2_analysis/2_assembly/Cr50_2_megahit_coverage/200_3/contigs.Cr50_2_megahit.index  -1 <( zcat Cr50_2_analysis/1_quality/Cr50_2_1_Q20_phix.fq.gz) -2 <( zcat Cr50_2_analysis/1_quality/Cr50_2_2_Q20_phix.fq.gz) -S Cr50_2_analysis/2_assembly/Cr50_2_megahit_coverage/200_3/Cr50_2_mega_200_3.sam &&
+
+bowtie2 --threads 15 -x Cr90_analysis/2_assembly/Cr90_megahit_coverage/200_3/contigs.Cr90_megahit.index  -1 <( zcat Cr90_analysis/1_quality/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix.fastq.gz) -2 <( zcat Cr90_analysis/1_quality/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix.fastq.gz) -S Cr90_analysis/2_assembly/Cr90_megahit_coverage/200_3/Cr90_mega_200_3.sam
+
+### sam to bam ###
+
+samtools view -F 4 -bS VCsponge_A.sam > VCsponge_A.bam
+
+samtools view -F 4 -bS Cr15_analysis/2_assembly/Cr15_megahit_coverage/200_3/Cr15_mega_200_3.sam > Cr15_analysis/2_assembly/Cr15_megahit_coverage/200_3/Cr15_mega_200_3.bam &&
+
+samtools view -F 4 -bS Cr50_1_analysis/2_assembly/Cr50_1_megahit_coverage/200_3/Cr50_1_mega_200_3.sam > Cr50_1_analysis/2_assembly/Cr50_1_megahit_coverage/200_3/Cr50_1_mega_200_3.bam &&
+
+samtools view -F 4 -bS Cr50_2_analysis/2_assembly/Cr50_2_megahit_coverage/200_3/Cr50_2_mega_200_3.sam > Cr50_2_analysis/2_assembly/Cr50_2_megahit_coverage/200_3/Cr50_2_mega_200_3.bam &&
+
+samtools view -F 4 -bS Cr90_analysis/2_assembly/Cr90_megahit_coverage/200_3/Cr90_mega_200_3.sam > Cr90_analysis/2_assembly/Cr90_megahit_coverage/200_3/Cr90_mega_200_3.bam &&

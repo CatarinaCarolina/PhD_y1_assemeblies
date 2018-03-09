@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#### Cr50_1, run at ~/assembly_per_georg/Cr50_1_analysis/2_assembly
+
+/home/georg/orange/software/bbmap/bbnorm.sh in1=../1_quality/Cr50_1_1_Q20_phix.fq.gz in2=../1_quality/Cr50_1_2_Q20_phix.fq.gz out1=Cr50_1_1_Q20_phix_norm_200_3.fq.gz out2=Cr50_1_2_Q20_phix_norm_200_3.fq.gz -Xmx50g t=15 target=200 min=3
+
+### ----> try to limit usage
+### took 9160.518 sec
+
+
+### 2nd round for Cr50_1, run at ~/assembly_per_georg/Cr50_1_analysis/2_assembly
+/home/georg/orange/software/bbmap/bbnorm.sh in1=../1_quality/Cr50_1_1_Q20_phix.fq.gz in2=../1_quality/Cr50_1_2_Q20_phix.fq.gz out1=Cr50_1_1_Q20_phix_norm.fq.gz out2=Cr50_1_2_Q20_phix_norm.fq.gz -Xmx50g t=15
+
+### took 3191.752 seconds
+
+### joint Cr50_2, run at ~/assembly_per_georg/Cr50_2_analysis/2_assembly
+/home/georg/orange/software/bbmap/bbnorm.sh in1=../1_quality/Cr50_2_1_Q20_phix.fq.gz in2=../1_quality/Cr50_2_2_Q20_phix.fq.gz out1=Cr50_2_1_Q20_phix_norm.fq.gz out2=Cr50_2_2_Q20_phix_norm.fq.gz -Xmx50g t=15 && /home/georg/orange/software/bbmap/bbnorm.sh in1=../1_quality/Cr50_2_1_Q20_phix.fq.gz in2=../1_quality/Cr50_2_2_Q20_phix.fq.gz out1=Cr50_2_1_Q20_phix_norm_200_3.fq.gz out2=Cr50_2_2_Q20_phix_norm_200_3.fq.gz -Xmx50g t=15 target=200 min=3
+
+

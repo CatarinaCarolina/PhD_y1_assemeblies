@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+#### for Cr15
+
+
+### run at ### ~/assembly_per_georg/Cr15_analysis/3_BGC$
+
+~/tools/BiG-SCAPE-master/bigscape.py -i contigs_Cr15_metaspades_filt1000/ -o bigscape_Cr15_metasp_f1000/ -c 15
+
+~/assembly_per_georg/Cr15_analysis/3_BGC$ ~/tools/BiG-SCAPE-master/bigscape.py -i  -o  -c 15
+
+
+
+#### for Cr50_1
+
+### run at ~/assembly_per_georg/Cr50_1_analysis/3_BGC
+
+~/tools/BiG-SCAPE-master/bigscape.py -i contigs_Cr50_1_megahit_1000filt/ -o bigscape_Cr50_1_megahit_1000filt/ -c 15 && ~/tools/BiG-SCAPE-master/bigscape.py -i contigs_Cr50_1_metaspades_1000filt/ -o bigscape_Cr50_1_metasp_1000filt/ -c 15
+
+## try running with two different samples ??
+
+
+#### for Cr50_2
+
+~/tools/BiG-SCAPE-master/bigscape.py -i contigs_Cr50_2_megahit_1000filt/ -o bigscape_Cr50_2_megahit_1000filt/ -c 15
+
+
+~/tools/BiG-SCAPE-master/bigscape.py -i contigs_Cr50_2_metaspades_1000filt/ -o bigscape_Cr50_2_metasp_1000filt/ -c 15
+
+
+#### for Cr90
+
+~/tools/BiG-SCAPE-master/bigscape.py -i contigs_Cr90_metaspades_1000filt/ -o bigscape_Cr90_metasp_1000filt/ -c 15
+
+~/tools/BiG-SCAPE-master/bigscape.py -i contigs_Cr90_megahit_1000filt/ -o bigscape_Cr90_megahit_1000filt/ -c 15

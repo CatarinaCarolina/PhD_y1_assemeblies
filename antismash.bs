@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+#### file lost during pc switch/ bellow just a usage example.
+
+antismash ~/assembly_per_georg/Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3/contigs_Cr15_megahit_filt1000.fasta --minimal -c20

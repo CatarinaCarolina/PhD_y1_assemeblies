@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="08335fbb-45bb-41be-861d-f397f1a287b3" name="micro4.wurnet.nl" url="http://micro4.wurnet.nl">
+        <fileTransfer host="micro4.wurnet.nl" port="22" rootFolder="/home/sales001" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

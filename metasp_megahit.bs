@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+#### metaspades assembly for Cr15_200_3
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 ../Cr15_norm/Crc15-BF_1_Q20_m50_Phix_norm_200_3.fq.gz --pe1-2 ../Cr15_norm/Crc15-BF_2_Q20_m50_Phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/2_assembly/Cr15_metaspades_assembly --only-assembler --meta -t 20
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_1_Q20_m50_Phix_norm_200_3.fq.gz --pe1-2 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_2_Q20_m50_Phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+#### metaspades assembly for Cr50_1_200_3
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_1_Q20_phix_norm_200_3.fq.gz --pe1-2 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_2_Q20_phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+#### metaspades assembly for Cr50_2_200_3
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_1_Q20_phix_norm_200_3.fq.gz --pe1-2 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_2_Q20_phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+#### metaspades assembly for Cr90_200_3
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix_norm_200_3.fastq.gz --pe1-2 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix_norm_200_3.fastq.gz -o /home/sales001/assembly_per_georg/Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+#### metaspades all put together, run at ~/assembly_per_georg
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_1_Q20_m50_Phix_norm_200_3.fq.gz --pe1-2 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_2_Q20_m50_Phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3 --only-assembler --meta -t 20 && /home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_1_Q20_phix_norm_200_3.fq.gz --pe1-2 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_2_Q20_phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3 --only-assembler --meta -t 20 && /home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_1_Q20_phix_norm_200_3.fq.gz --pe1-2 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_2_Q20_phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3 --only-assembler --meta -t 20 && /home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix_norm_200_3.fastq.gz --pe1-2 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix_norm_200_3.fastq.gz -o /home/sales001/assembly_per_georg/Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+##### assembly with megahit run at ~/assembly_per_georg
+	example  /yourpath/megahit -1 Library1_1.fq,Library2_1.fq -2 Library1_2.fq,Library2_2.fq -m 0.5 -t 12
+
+			-m % of available memory used
+			-t threads
+
+##### megahit assembly for Cr15_200_3 run at ~/assembly_per_georg/
+
+~/../../programs/megahit/megahit -1 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_1_Q20_m50_Phix_norm_200_3.fq.gz -2 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_2_Q20_m50_Phix_norm_200_3.fq.gz -o Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3 -m 0.2 -t 10
+
+#### megahit assembly for Cr50_1_200_3
+
+~/../../programs/megahit/megahit -1 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_1_Q20_phix_norm_200_3.fq.gz -2 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_2_Q20_phix_norm_200_3.fq.gz -o Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3 -m 0.5 -t 12
+
+
+#### megahit assembly for Cr50_2_200_3
+
+~/../../programs/megahit/megahit -1 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_1_Q20_phix_norm_200_3fq.gz -2 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_2_Q20_phix_norm_200_3.fq.gz -o Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3 -m 0.5 -t 12
+
+
+#### megahit assembly for Cr90_200_3
+
+~/../../programs/megahit/megahit -1 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix_norm_200_3.fastq.gz -2 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix_norm_200_3.fastq.gz -o Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3 -m 0.5 -t 12
+
+##### joint assembly with megahit run at ~/assembly_per_georg
+~/../../programs/megahit/megahit -1 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_1_Q20_m50_Phix_norm_200_3.fq.gz -2 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_2_Q20_m50_Phix_norm_200_3.fq.gz -o Cr15_analysis/2_assembly/Cr15_megahit_assembly/200_3 -m 0.5 -t 12 && ~/../../programs/megahit/megahit -1 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_1_Q20_phix_norm_200_3.fq.gz -2 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_2_Q20_phix_norm_200_3.fq.gz -o Cr50_1_analysis/2_assembly/Cr50_1_megahit_assembly/200_3 -m 0.5 -t 12 &&
+
+~/../../programs/megahit/megahit -1 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_1_Q20_phix_norm_200_3.fq.gz -2 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_2_Q20_phix_norm_200_3.fq.gz -o Cr50_2_analysis/2_assembly/Cr50_2_megahit_assembly/200_3 -m 0.5 -t 12 && ~/../../programs/megahit/megahit -1 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix_norm_200_3.fastq.gz -2 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix_norm_200_3.fastq.gz -o Cr90_analysis/2_assembly/Cr90_megahit_assembly/200_3 -m 0.5 -t 12
+
+
+
+###### ??
+
+#### assembly for Cr15_200_3
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 ../Cr15_norm/Crc15-BF_1_Q20_m50_Phix_norm_200_3.fq.gz --pe1-2 ../Cr15_norm/Crc15-BF_2_Q20_m50_Phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/2_assembly/Cr15_metaspades_assembly --only-assembler --meta -t 20
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_1_Q20_m50_Phix_norm_200_3.fq.gz --pe1-2 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_2_Q20_m50_Phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+#### assembly for Cr50_1_200_3
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_1_Q20_phix_norm_200_3.fq.gz --pe1-2 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_2_Q20_phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+#### assembly for Cr50_2_200_3
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_1_Q20_phix_norm_200_3.fq.gz --pe1-2 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_2_Q20_phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+#### assembly for Cr90_200_3
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix_norm_200_3.fastq.gz --pe1-2 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix_norm_200_3.fastq.gz -o /home/sales001/assembly_per_georg/Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3 --only-assembler --meta -t 20
+
+#### all put together, run at ~/assembly_per_georg
+
+/home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_1_Q20_m50_Phix_norm_200_3.fq.gz --pe1-2 Cr15_analysis/2_assembly/Cr15_norm/Crc15-BF_2_Q20_m50_Phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr15_analysis/2_assembly/Cr15_metaspades_assembly/200_3 --only-assembler --meta -t 20 && /home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_1_Q20_phix_norm_200_3.fq.gz --pe1-2 Cr50_1_analysis/2_assembly/Cr50_1_norm/Cr50_1_2_Q20_phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr50_1_analysis/2_assembly/Cr50_1_metaspades_assembly/200_3 --only-assembler --meta -t 20 && /home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_1_Q20_phix_norm_200_3.fq.gz --pe1-2 Cr50_2_analysis/2_assembly/Cr50_2_norm/Cr50_2_2_Q20_phix_norm_200_3.fq.gz -o /home/sales001/assembly_per_georg/Cr50_2_analysis/2_assembly/Cr50_2_metaspades_assembly/200_3 --only-assembler --meta -t 20 && /home/georg/orange/software/SPAdes-3.11.1-Linux/bin/spades.py --pe1-1 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R1_001_filt_Q20_phix_norm_200_3.fastq.gz --pe1-2 Cr90_analysis/2_assembly/Cr90_norm/Cr91_Cr92_GCCAAT_L007_R2_001_filt_Q20_phix_norm_200_3.fastq.gz -o /home/sales001/assembly_per_georg/Cr90_analysis/2_assembly/Cr90_metaspades_assembly/200_3 --only-assembler --meta -t 20
